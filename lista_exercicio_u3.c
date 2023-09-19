@@ -1,27 +1,19 @@
 #include <stdio.h>
-#define n 50
 
-void bubbleSort(int count, int arr[]){
+void insertionSort(int arr[], int count) {
+    int i, chave, j;
+    for (i = 1; i < count; i++) {
+        chave = arr[i];
+        j = i - 1;
 
-    int aux;
-    int contador ;
-    contador = count;
-    for ( int i = 0; i < contador ; i++)
-    {
-        for ( int j = 0; j < contador - 1; j++)
-        {
-            if (arr[j] > arr[j+1])
-            {
-                aux = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = aux;
-            }
-            
+        // Mova os elementos do arr[0..i-1] que são maiores que chave
+        // para uma posição à frente de sua posição atual
+        while (j >= 0 && arr[j] < chave) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
         }
-        
+        arr[j + 1] = chave;
     }
-    
-
 }
 
 int main (){
@@ -43,10 +35,10 @@ int main (){
             break;
         }
     }
-    bubbleSort(count,numero);
+    insertionSort(numero,count);
 
     printf("\nArray ordenado:\n");
     for (i = 0; i < count; i++) {
-        printf("%d ", numero[i]);
+        printf("%d", numero[i]);
     }
 }
